@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/academic">Academic</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Student Details</h1>
+
+        <div class="student-info">
+
+            <h2>{{ student.name }}</h2>
+
+            <p><strong>Email:</strong> {{ student.email }}</p>
+
+            <p><strong>Course:</strong> {{ student.course }}</p>
+
+            <p><strong>Year:</strong> {{ student.year }}</p>
+
+        </div>
+
+
+        <h2>📚 Academic Records</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Result</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for record in academic_records %}
+
+                <tr>
+
+                    <td>{{ record.subject }}</td>
+
+                    <td>{{ record.marks }}</td>
+
+                    <td>{{ record.grade }}</td>
+
+                    <td>{{ record.result }}</td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="4">
+                        No academic records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        <br>
+
+
+        <h2>📅 Attendance Records</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for record in attendance_records %}
+
+                <tr>
+
+                    <td>{{ record.date }}</td>
+
+                    <td>{{ record.status }}</td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="2">
+                        No attendance records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        <br>
+
+        <a href="/students">
+            ← Back to Students
+        </a>
+
+    </section>
+
+</body>
+
+</html>

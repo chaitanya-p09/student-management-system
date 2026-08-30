@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Records</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/academic">Academic</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Academic Records</h1>
+
+        <p class="welcome">
+            View student academic performance
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Grade</th>
+                        <th>Result</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for record in records %}
+
+                    <tr>
+
+                        <td>{{ record.id }}</td>
+
+                        <td>{{ record.name }}</td>
+
+                        <td>{{ record.course }}</td>
+
+                        <td>{{ record.subject }}</td>
+
+                        <td>{{ record.marks }}</td>
+
+                        <td>{{ record.grade }}</td>
+
+                        <td>{{ record.result }}</td>
+
+                        <td>
+                            <a href="/edit-academic/{{ record.id }}">Edit</a>
+                            |
+                            <a href="/delete-academic/{{ record.id }}"
+                                onclick="return confirm('Are you sure you want to delete this record?')">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <br>
+
+        <a href="/academic">
+            + Add Academic Record
+        </a>
+
+        <br><br>
+
+        <a href="/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </section>
+
+</body>
+
+</html>

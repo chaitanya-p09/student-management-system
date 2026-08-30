@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Records</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Attendance Records</h1>
+
+        <p class="welcome">
+            View all student attendance
+        </p>
+        <form method="GET" action="/attendance-records" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search by student or course"
+        value="{{ search }}"
+    >
+
+    <select name="status">
+
+        <option value="">All Status</option>
+
+        <option value="Present"
+                {% if status == "Present" %}selected{% endif %}>
+            Present
+        </option>
+
+        <option value="Absent"
+                {% if status == "Absent" %}selected{% endif %}>
+            Absent
+        </option>
+
+    </select>
+
+    <button type="submit">
+        🔎 Filter
+    </button>
+
+    <a href="/attendance-records">
+        Clear
+    </a>
+
+</form>
+
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for record in records %}
+
+                <tr>
+
+                    <td>{{ record.id }}</td>
+
+                    <td>{{ record.name }}</td>
+
+                    <td>{{ record.course }}</td>
+
+                    <td>{{ record.date }}</td>
+
+                    <td>{{ record.status }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        <br>
+
+        <a href="/attendance">
+            + Mark Attendance
+        </a>
+
+        <br><br>
+
+        <a href="/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </section>
+
+</body>
+
+</html>

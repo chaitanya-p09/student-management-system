@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/add-student">Add Student</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/academic">Academic</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Student Dashboard</h1>
+
+        <p class="welcome">
+            Welcome to the Student Management System
+        </p>
+
+
+        <!-- Statistics -->
+
+        <div class="stats-container">
+
+            <a href="/students" class="stat-card">
+
+    <h2>👨‍🎓</h2>
+
+    <h3>Total Students</h3>
+
+    <p>{{ total_students }}</p>
+
+</a>
+
+            <a href="/attendance-records" class="stat-card">
+
+    <h2>📅</h2>
+
+    <h3>Attendance Records</h3>
+
+    <p>{{ total_attendance }}</p>
+
+</a>
+
+            <a href="/academic-records" class="stat-card">
+
+    <h2>📚</h2>
+
+    <h3>Academic Records</h3>
+
+    <p>{{ total_academic }}</p>
+
+</a>
+        </div>
+
+
+        <!-- Dashboard Links -->
+
+        <div class="dashboard-links">
+
+            <a href="/students">
+                👨‍🎓 Student Records
+            </a>
+
+            <a href="/add-student">
+                ➕ Add Student
+            </a>
+
+            <a href="/attendance-records">
+                📅 Attendance Records
+            </a>
+
+            <a href="/academic-records">
+                📚 Academic Records
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

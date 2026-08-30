@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Academic Record</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/academic">Academic</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Edit Academic Record</h1>
+
+        <form method="POST">
+
+            <label>
+                Subject
+            </label>
+
+            <input
+                type="text"
+                name="subject"
+                value="{{ record.subject }}"
+                required
+            >
+
+            <br><br>
+
+
+            <label>
+                Marks
+            </label>
+
+            <input
+                type="number"
+                name="marks"
+                value="{{ record.marks }}"
+                min="0"
+                max="100"
+                required
+            >
+
+            <br><br>
+
+
+            <button type="submit">
+                Update Record
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/academic-records">
+            ← Back to Academic Records
+        </a>
+
+    </section>
+
+</body>
+
+</html>

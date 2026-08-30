@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Records</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/add-student">Add Student</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Student Records</h1>
+
+        <p class="welcome">
+            All registered students
+        </p>
+        <form method="GET" action="/students" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search by name, email or course"
+        value="{{ search }}"
+    >
+
+    <button type="submit">
+        🔎 Search
+    </button>
+
+    <a href="/students">
+        Clear
+    </a>
+
+</form>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Year</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for student in students %}
+
+                    <tr>
+
+                        <td>{{ student.id }}</td>
+
+                        <td>
+                            <a href="/student/{{ student.id }}">
+                                {{ student.name }}
+                            </a>
+                        </td>
+
+                        <td>{{ student.email }}</td>
+
+                        <td>{{ student.course }}</td>
+
+                        <td>{{ student.year }}</td>
+
+                        <td class="actions">
+
+                            <a href="/edit-student/{{ student.id }}">
+                                Edit
+                            </a>
+
+                            <a href="/delete-student/{{ student.id }}"
+                               onclick="return confirm('Are you sure you want to delete this student?')">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <br>
+
+        <a href="/add-student">
+            + Add New Student
+        </a>
+
+        <br><br>
+
+        <a href="/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </section>
+
+</body>
+
+</html>

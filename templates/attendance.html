@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/add-student">Add Student</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Attendance Management</h1>
+
+        <p class="welcome">
+            Mark student attendance
+        </p>
+
+
+        <form method="POST">
+
+            <label for="student_id">
+                Select Student
+            </label>
+
+            <select name="student_id" id="student_id" required>
+
+                <option value="">
+                    -- Select Student --
+                </option>
+
+                {% for student in students %}
+
+                <option value="{{ student.id }}">
+                    {{ student.name }} - {{ student.course }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <br><br>
+
+
+            <label for="date">
+                Date
+            </label>
+
+            <input
+                type="date"
+                name="date"
+                id="date"
+                required
+            >
+
+
+            <br><br>
+
+
+            <label for="status">
+                Attendance
+            </label>
+
+            <select name="status" id="status" required>
+
+                <option value="">
+                    -- Select Status --
+                </option>
+
+                <option value="Present">
+                    Present
+                </option>
+
+                <option value="Absent">
+                    Absent
+                </option>
+
+            </select>
+
+
+            <br><br>
+
+
+            <button type="submit">
+                Save Attendance
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </section>
+
+</body>
+
+</html>

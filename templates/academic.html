@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Records</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            StudentMS
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/attendance">Attendance</a>
+            <a href="/login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <h1>Academic Records</h1>
+
+        <p class="welcome">
+            Add student marks and academic results
+        </p>
+
+
+        <form method="POST">
+
+            <label for="student_id">
+                Select Student
+            </label>
+
+            <select name="student_id" id="student_id" required>
+
+                <option value="">
+                    -- Select Student --
+                </option>
+
+                {% for student in students %}
+
+                <option value="{{ student.id }}">
+                    {{ student.name }} - {{ student.course }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <br><br>
+
+
+            <label for="subject">
+                Subject
+            </label>
+
+            <input
+                type="text"
+                name="subject"
+                id="subject"
+                placeholder="Enter subject"
+                required
+            >
+
+
+            <br><br>
+
+
+            <label for="marks">
+                Marks
+            </label>
+
+            <input
+    type="number"
+    name="marks"
+    min="0"
+    max="100"
+    required
+>
+
+
+            <br><br>
+
+
+            <button type="submit">
+                Save Academic Record
+            </button>
+
+        </form>
+
+
+        <br>
+
+        <a href="/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </section>
+
+</body>
+
+</html>
