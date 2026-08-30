@@ -9,6 +9,7 @@ A web-based Student Management System developed using Python, Flask, HTML, CSS, 
 - Search Student Records
 - Individual Student Details
 - Attendance Management
+- Attendance Records
 - Academic Records Management
 - Marks and Grade Calculation
 - Pass/Fail Result
@@ -36,7 +37,22 @@ student-management-system/
 ├── README.md
 │
 ├── templates/
+│   ├── index.html
+│   ├── register.html
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── students.html
+│   ├── add_student.html
+│   ├── edit_student.html
+│   ├── student_details.html
+│   ├── attendance.html
+│   ├── attendance_records.html
+│   ├── academic.html
+│   ├── academic_records.html
+│   └── edit_academic.html
 │
 └── static/
-    └── css/
-        └── style.css
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── app.js
