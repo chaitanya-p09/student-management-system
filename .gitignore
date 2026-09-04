@@ -2,3 +2,13 @@ venv/
 __pycache__/
 *.pyc
 students.db
+# Local database
+students.db
+students_backup.db
+
+# Duplicate/local project folder
+flask project/
+
+# Python cache
+__pycache__/
+*.pyc
