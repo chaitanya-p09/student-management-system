@@ -470,6 +470,7 @@ def attendance_records():
     query = """
         SELECT
             attendance.id,
+            attendance.student_id,
             students.name,
             students.course,
             attendance.date,
@@ -484,7 +485,6 @@ def attendance_records():
 
     # Search by student name or course
     if search:
-
         query += """
             AND (
                 students.name LIKE ?
@@ -499,9 +499,7 @@ def attendance_records():
 
     # Filter by attendance status
     if status:
-
         query += " AND attendance.status = ?"
-
         params.append(status)
 
     query += " ORDER BY attendance.date DESC"
@@ -519,7 +517,6 @@ def attendance_records():
         search=search,
         status=status
     )
-
 
 # ---------------- ACADEMIC RECORDS ----------------
 
@@ -615,6 +612,7 @@ def academic_records():
         """
         SELECT
             academic_records.id,
+            academic_records.student_id,
             students.name,
             students.course,
             academic_records.subject,
@@ -634,8 +632,6 @@ def academic_records():
         "academic_records.html",
         records=records
     )
-
-
 # ---------------- EDIT ACADEMIC RECORD ----------------
 
 @app.route("/edit-academic/<int:id>", methods=["GET", "POST"])

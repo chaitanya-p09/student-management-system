@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -12,100 +11,155 @@
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
 
-    <div class="navbar-container">
+        <div class="navbar-container">
 
-        <a href="/dashboard" class="logo">
-            🎓 StudentMS
-        </a>
+            <a href="/dashboard" class="logo">
+                🎓 StudentMS
+            </a>
 
-        <div class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/students">Students</a>
-            <a href="/add-student">Add Student</a>
-            <a href="/attendance">Attendance</a>
-            <a href="/academic">Academic</a>
-            <a href="/login" class="logout-link">Logout</a>
+            <div class="nav-links">
+
+                <a href="/dashboard">Dashboard</a>
+                <a href="/students">Students</a>
+                <a href="/add-student">Add Student</a>
+                <a href="/attendance">Attendance</a>
+                <a href="/academic">Academic</a>
+
+                <a href="/logout" class="logout-link">
+                    Logout
+                </a>
+
+            </div>
+
         </div>
 
-    </div>
-
-</nav>
-
-    <section class="dashboard">
-
-        <h1>Student Dashboard</h1>
-
-        <p class="welcome">
-            Welcome to the Student Management System
-        </p>
+    </nav>
 
 
-        <!-- Statistics -->
+    <!-- ================= DASHBOARD ================= -->
+
+    <main class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h1>Student Dashboard</h1>
+
+            <p>
+                Welcome to the Student Management System
+            </p>
+
+        </div>
+
+
+        <!-- ================= STATISTICS ================= -->
 
         <div class="stats-container">
 
             <a href="/students" class="stat-card">
 
-    <h2>👨‍🎓</h2>
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
 
-    <h3>Total Students</h3>
+                <h3>Total Students</h3>
 
-    <p>{{ total_students }}</p>
+                <p class="stat-number">
+                    {{ total_students }}
+                </p>
 
-</a>
+                <span>View Students →</span>
+
+            </a>
+
 
             <a href="/attendance-records" class="stat-card">
 
-    <h2>📅</h2>
+                <div class="stat-icon">
+                    📅
+                </div>
 
-    <h3>Attendance Records</h3>
+                <h3>Attendance Records</h3>
 
-    <p>{{ total_attendance }}</p>
+                <p class="stat-number">
+                    {{ total_attendance }}
+                </p>
 
-</a>
+                <span>View Attendance →</span>
+
+            </a>
+
 
             <a href="/academic-records" class="stat-card">
 
-    <h2>📚</h2>
+                <div class="stat-icon">
+                    📚
+                </div>
 
-    <h3>Academic Records</h3>
+                <h3>Academic Records</h3>
 
-    <p>{{ total_academic }}</p>
+                <p class="stat-number">
+                    {{ total_academic }}
+                </p>
 
-</a>
-        </div>
+                <span>View Academics →</span>
 
-
-        <!-- Dashboard Links -->
-
-        <div class="dashboard-links">
-
-            <a href="/students">
-                👨‍🎓 Student Records
-            </a>
-
-            <a href="/add-student">
-                ➕ Add Student
-            </a>
-
-            <a href="/attendance-records">
-                📅 Attendance Records
-            </a>
-
-            <a href="/academic-records">
-                📚 Academic Records
             </a>
 
         </div>
 
-    </section>
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <section class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <p class="quick-subtitle">
+                Manage your student records quickly
+            </p>
+
+            <div class="dashboard-links">
+
+                <a href="/students" class="dashboard-action">
+                    👨‍🎓
+                    <span>Student Records</span>
+                </a>
+
+                <a href="/add-student" class="dashboard-action">
+                    ➕
+                    <span>Add Student</span>
+                </a>
+
+                <a href="/attendance-records" class="dashboard-action">
+                    📅
+                    <span>Attendance Records</span>
+                </a>
+
+                <a href="/academic-records" class="dashboard-action">
+                    📚
+                    <span>Academic Records</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+        <p>© 2026 Student Management System</p>
+    </footer>
 
 </body>
 

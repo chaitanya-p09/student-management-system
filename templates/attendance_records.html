@@ -15,116 +15,239 @@
 
 <body>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
 
-        <div class="logo">
-            StudentMS
-        </div>
+        <div class="navbar-container">
 
-        <div class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/students">Students</a>
-            <a href="/attendance">Attendance</a>
-            <a href="/login">Logout</a>
+            <a href="/dashboard" class="logo">
+                🎓 StudentMS
+            </a>
+
+            <div class="nav-links">
+                <a href="/dashboard">Home</a>
+                <a href="/students">Students</a>
+                <a href="/add-student">Add Student</a>
+                <a href="/attendance">Attendance</a>
+                <a href="/academic">Academic</a>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+
         </div>
 
     </nav>
 
 
-    <section class="dashboard">
+    <!-- Attendance Records -->
+    <main class="records-page">
 
-        <h1>Attendance Records</h1>
+        <div class="records-header">
 
-        <p class="welcome">
-            View all student attendance
+            <div>
+                <h1>📋 Attendance Records</h1>
+
+                <p>
+                    View and filter student attendance records.
+                </p>
+            </div>
+
+            <a href="/attendance" class="primary-btn">
+                + Mark Attendance
+            </a>
+
+        </div>
+
+
+        <!-- Search and Filter -->
+        <div class="attendance-search-card">
+
+            <form method="GET"
+                  action="/attendance-records"
+                  class="attendance-search-form">
+
+                <div class="search-field">
+
+                    <label for="search">
+                        Search
+                    </label>
+
+                    <input
+                        type="text"
+                        id="search"
+                        name="search"
+                        placeholder="Search by student or course"
+                        value="{{ search }}"
+                    >
+
+                </div>
+
+
+                <div class="search-field">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select name="status" id="status">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="Present"
+                            {% if status == "Present" %}selected{% endif %}>
+                            ✓ Present
+                        </option>
+
+                        <option value="Absent"
+                            {% if status == "Absent" %}selected{% endif %}>
+                            ✕ Absent
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-buttons">
+
+                    <button type="submit" class="filter-btn">
+                        🔎 Filter
+                    </button>
+
+                    <a href="/attendance-records"
+                       class="clear-btn">
+                        Clear
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- Records Table -->
+        <div class="records-table-card">
+
+            <div class="table-wrapper">
+
+                <table class="attendance-records-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for record in records %}
+
+                        <tr>
+
+                            <!-- Student ID -->
+                            <td>
+                                <span class="student-id">
+                                    {{ record.student_id }}
+                                </span>
+                            </td>
+
+
+                            <!-- Student -->
+                            <td>
+                                <strong class="student-name">
+                                    {{ record.name }}
+                                </strong>
+                            </td>
+
+
+                            <!-- Course -->
+                            <td>
+                                <span class="course-badge">
+                                    {{ record.course }}
+                                </span>
+                            </td>
+
+
+                            <!-- Date -->
+                            <td>
+                                📅 {{ record.date }}
+                            </td>
+
+
+                            <!-- Status -->
+                            <td>
+
+                                {% if record.status == "Present" %}
+
+                                    <span class="attendance-present">
+                                        ✓ Present
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="attendance-absent">
+                                        ✕ Absent
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="5"
+                                class="no-records">
+
+                                📭 No attendance records found.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- Back -->
+        <div class="back-section">
+
+            <a href="/dashboard" class="back-btn">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Management System
         </p>
-        <form method="GET" action="/attendance-records" class="search-form">
 
-    <input
-        type="text"
-        name="search"
-        placeholder="Search by student or course"
-        value="{{ search }}"
-    >
-
-    <select name="status">
-
-        <option value="">All Status</option>
-
-        <option value="Present"
-                {% if status == "Present" %}selected{% endif %}>
-            Present
-        </option>
-
-        <option value="Absent"
-                {% if status == "Absent" %}selected{% endif %}>
-            Absent
-        </option>
-
-    </select>
-
-    <button type="submit">
-        🔎 Filter
-    </button>
-
-    <a href="/attendance-records">
-        Clear
-    </a>
-
-</form>
-
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Student</th>
-                    <th>Course</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-
-
-            <tbody>
-
-                {% for record in records %}
-
-                <tr>
-
-                    <td>{{ record.id }}</td>
-
-                    <td>{{ record.name }}</td>
-
-                    <td>{{ record.course }}</td>
-
-                    <td>{{ record.date }}</td>
-
-                    <td>{{ record.status }}</td>
-
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
-
-
-        <br>
-
-        <a href="/attendance">
-            + Mark Attendance
-        </a>
-
-        <br><br>
-
-        <a href="/dashboard">
-            ← Back to Dashboard
-        </a>
-
-    </section>
+    </footer>
 
 </body>
 

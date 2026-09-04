@@ -556,3 +556,1417 @@ td a {
         padding: 22px;
     }
 }
+/* ================================
+   FINAL NAVBAR FIX
+================================ */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav.navbar {
+    display: block !important;
+    width: 100% !important;
+    min-height: 70px !important;
+    background: #1e3a8a !important;
+    color: #ffffff !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+nav.navbar .navbar-container {
+    width: 90% !important;
+    max-width: 1200px !important;
+    min-height: 70px !important;
+    margin: 0 auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+nav.navbar .logo {
+    color: #ffffff !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+nav.navbar .nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+nav.navbar .nav-links a {
+    color: #ffffff !important;
+    background: transparent !important;
+    text-decoration: none !important;
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    border-radius: 6px !important;
+}
+
+nav.navbar .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+nav.navbar .nav-links .logout-link {
+    background: #dc2626 !important;
+}
+
+nav.navbar .nav-links .logout-link:hover {
+    background: #b91c1c !important;
+}
+/* =================================
+   DASHBOARD DESIGN
+================================= */
+
+.dashboard {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 0;
+}
+
+/* Dashboard Header */
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 38px;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    font-size: 17px;
+    color: #6b7280;
+}
+
+
+/* =================================
+   STATISTICS CARDS
+================================= */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 45px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #1f2937;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.stat-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.stat-card h3 {
+    color: #1e3a8a;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.stat-number {
+    font-size: 38px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 5px 0 10px;
+}
+
+.stat-card span {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* =================================
+   QUICK ACTIONS
+================================= */
+
+.quick-actions {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.quick-actions h2 {
+    text-align: center;
+    color: #1e3a8a;
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.quick-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+
+/* Quick Action Grid */
+
+.dashboard-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.dashboard-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 110px;
+
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    transition: all 0.3s ease;
+}
+
+.dashboard-action span {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.dashboard-action:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+    transform: translateY(-3px);
+}
+
+
+/* =================================
+   RESPONSIVE DASHBOARD
+================================= */
+
+@media (max-width: 900px) {
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        width: 94%;
+        padding: 30px 0;
+    }
+
+    .dashboard-header h1 {
+        font-size: 30px;
+    }
+
+    .dashboard-links {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        padding: 20px;
+    }
+
+}
+/* =================================
+   STUDENT RECORDS PAGE
+================================= */
+
+.records-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 0;
+}
+
+
+/* Header */
+
+.records-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.records-header h1 {
+    font-size: 36px;
+    color: #1e3a8a;
+    margin-bottom: 5px;
+}
+
+.records-header p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+
+/* Add Student Button */
+
+.primary-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+
+    padding: 12px 20px;
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* Search Box */
+
+.student-search {
+    background: white;
+    padding: 20px;
+
+    border-radius: 12px;
+    margin-bottom: 25px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.student-search form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.student-search input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.student-search button {
+    background: #2563eb;
+}
+
+.clear-btn {
+    background: #6b7280;
+    color: white;
+
+    padding: 10px 17px;
+    border-radius: 7px;
+
+    text-decoration: none;
+}
+
+.clear-btn:hover {
+    background: #4b5563;
+}
+
+
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.table-container table {
+    min-width: 800px;
+}
+
+.table-container thead {
+    background: #1e3a8a;
+}
+
+.table-container th {
+    padding: 16px;
+    color: white;
+    font-size: 14px;
+}
+
+.table-container td {
+    padding: 15px;
+    color: #374151;
+}
+
+.table-container tbody tr {
+    transition: 0.2s;
+}
+
+.table-container tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* Student ID */
+
+.student-id {
+    display: inline-block;
+
+    background: #eff6ff;
+    color: #1d4ed8;
+
+    padding: 5px 9px;
+    border-radius: 6px;
+
+    font-weight: bold;
+}
+
+
+/* Student Name */
+
+.student-name {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.student-name:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+
+/* Course */
+
+.course-badge {
+    display: inline-block;
+
+    background: #eef2ff;
+    color: #3730a3;
+
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* Action Buttons */
+
+.action-buttons {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .edit-btn,
+.action-buttons .delete-btn {
+    padding: 7px 11px;
+    font-size: 13px;
+    border-radius: 6px;
+
+    color: white;
+    text-decoration: none;
+}
+
+.action-buttons .edit-btn {
+    background: #f59e0b;
+}
+
+.action-buttons .edit-btn:hover {
+    background: #d97706;
+}
+
+.action-buttons .delete-btn {
+    background: #dc2626;
+}
+
+.action-buttons .delete-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* No Records */
+
+.no-records {
+    text-align: center;
+    padding: 40px !important;
+
+    color: #6b7280 !important;
+    font-size: 16px;
+}
+
+
+/* Back Button */
+
+.back-section {
+    margin-top: 25px;
+}
+
+.back-btn {
+    display: inline-block;
+
+    color: #1e3a8a;
+    background: white;
+
+    padding: 10px 16px;
+
+    border-radius: 7px;
+    text-decoration: none;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.back-btn:hover {
+    background: #eff6ff;
+}
+
+
+/* =================================
+   STUDENT PAGE RESPONSIVE
+================================= */
+
+@media (max-width: 800px) {
+
+    .records-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .student-search form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-search input,
+    .student-search button,
+    .clear-btn {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .records-page {
+        width: 94%;
+        padding: 30px 0;
+    }
+
+    .records-header h1 {
+        font-size: 28px;
+    }
+
+}
+/* =========================================
+   EDIT STUDENT PAGE
+   ========================================= */
+
+.edit-student-page {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+
+/* Form Card */
+.student-form-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Form Groups */
+.student-form-card .form-group {
+    margin-bottom: 22px;
+}
+
+
+/* Labels */
+.student-form-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+
+/* Inputs and Select */
+.student-form-card input,
+.student-form-card select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+
+/* Focus */
+.student-form-card input:focus,
+.student-form-card select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* Submit Button */
+.student-form-card .submit-btn {
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+
+.student-form-card .submit-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+
+/* Form Buttons */
+.student-form-card .form-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+/* Cancel Button */
+.student-form-card .cancel-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #e5e7eb;
+    color: #1f2937;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+
+.student-form-card .cancel-btn:hover {
+    background: #d1d5db;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .student-form-card {
+        padding: 25px 20px;
+    }
+
+    .student-form-card .form-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-form-card .submit-btn,
+    .student-form-card .cancel-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+}
+/* =========================================
+   STUDENT DETAILS PAGE
+   ========================================= */
+
+.student-details-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px 40px;
+}
+
+
+/* Header */
+.details-header {
+    margin-bottom: 30px;
+}
+
+.details-header h1 {
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.details-header p {
+    color: #6b7280;
+    margin: 0;
+}
+
+
+/* Student Profile Card */
+.student-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Profile Icon */
+.student-profile-icon {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    border-radius: 50%;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+}
+
+
+/* Profile Information */
+.student-profile-info h2 {
+    margin: 0 0 20px;
+    color: #1e3a8a;
+    font-size: 27px;
+}
+
+
+/* Information Grid */
+.student-info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+
+/* Information Item */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 200px;
+}
+
+
+/* Labels */
+.info-label {
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Values */
+.info-value {
+    color: #111827;
+    font-size: 15px;
+}
+
+
+/* Details Sections */
+.details-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Section Heading */
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    margin: 0 0 5px;
+    color: #111827;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* Table Wrapper */
+.details-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* Details Table */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+/* Table Header */
+.details-table th {
+    background: #1e3a8a;
+    color: #ffffff;
+    padding: 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+/* Table Cells */
+.details-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+}
+
+
+/* Row Hover */
+.details-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* Grade Badge */
+.grade-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
+
+/* Pass Result */
+.result-pass {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+}
+
+
+/* Fail Result */
+.result-fail {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-weight: 600;
+}
+
+
+/* Present */
+.attendance-present {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+}
+
+
+/* Absent */
+.attendance-absent {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-weight: 600;
+}
+
+
+/* Empty Records */
+.empty-records {
+    text-align: center !important;
+    padding: 30px !important;
+    color: #6b7280 !important;
+}
+
+
+/* Back Section */
+.details-back-section {
+    margin-top: 10px;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .student-details-page {
+        margin: 25px auto;
+        padding: 0 15px 30px;
+    }
+
+    .student-profile-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    .student-profile-info h2 {
+        font-size: 23px;
+    }
+
+    .student-info-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-item {
+        min-width: 0;
+    }
+
+    .details-section {
+        padding: 18px;
+    }
+
+    .details-table th,
+    .details-table td {
+        padding: 11px;
+        font-size: 13px;
+    }
+}
+/* =========================================
+   ATTENDANCE MANAGEMENT PAGE
+   ========================================= */
+
+.attendance-page {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px 40px;
+}
+
+
+/* Header */
+.attendance-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.attendance-header h1 {
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.attendance-header p {
+    margin: 0;
+    color: #6b7280;
+}
+
+
+/* Attendance Card */
+.attendance-card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Form Group */
+.attendance-form-group {
+    margin-bottom: 22px;
+}
+
+
+/* Labels */
+.attendance-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+
+/* Inputs and Selects */
+.attendance-form-group input,
+.attendance-form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+
+/* Focus */
+.attendance-form-group input:focus,
+.attendance-form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* Buttons */
+.attendance-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+
+/* Submit */
+.attendance-buttons .submit-btn {
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.attendance-buttons .submit-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+
+/* Cancel */
+.attendance-buttons .cancel-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #e5e7eb;
+    color: #1f2937;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.attendance-buttons .cancel-btn:hover {
+    background: #d1d5db;
+}
+
+
+/* Records Button */
+.attendance-records-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.records-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #1e3a8a;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.records-btn:hover {
+    background: #172554;
+    transform: translateY(-1px);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .attendance-page {
+        margin: 25px auto;
+        padding: 0 15px 30px;
+    }
+
+    .attendance-card {
+        padding: 25px 20px;
+    }
+
+    .attendance-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .attendance-buttons .submit-btn,
+    .attendance-buttons .cancel-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+}
+/* ================================
+   ACADEMIC PAGE
+================================ */
+
+.academic-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.academic-page .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.academic-page .form-header h1 {
+    margin-bottom: 8px;
+}
+
+.academic-page .form-header p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+.academic-page .student-form-card {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.academic-page .form-help {
+    display: block;
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Academic select */
+
+.academic-page select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background: white;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.academic-page select:focus {
+    outline: none;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+/* Marks input */
+
+.academic-page input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+
+.academic-page .form-buttons {
+    margin-top: 25px;
+}
+
+.academic-page .primary-btn {
+    cursor: pointer;
+    border: none;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .academic-page {
+        width: 92%;
+    }
+
+    .academic-page .form-header h1 {
+        font-size: 25px;
+    }
+
+}
+/* =================================
+   ACADEMIC RECORDS PAGE
+================================= */
+
+.academic-records-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.academic-records-table th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.academic-records-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+    vertical-align: middle;
+}
+
+.academic-records-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* Student ID */
+
+.academic-records-table .student-id {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #eff6ff;
+    color: #1e3a8a;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+
+/* Student Name */
+
+.academic-records-table .student-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+
+/* Course */
+
+.academic-records-table .course-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Marks */
+
+.academic-records-table .marks-label {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+
+/* Grade */
+
+.grade-badge {
+    display: inline-block;
+    min-width: 35px;
+    padding: 5px 9px;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+
+/* Result */
+
+.result-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.result-pass {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.result-fail {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* Table Heading */
+
+.records-table-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.table-heading h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 20px;
+}
+
+.record-count {
+    background: #eff6ff;
+    color: #1e3a8a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Action Buttons */
+
+.academic-records-table .action-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.academic-records-table .edit-btn,
+.academic-records-table .delete-btn {
+    padding: 7px 11px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.academic-records-table .edit-btn {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.academic-records-table .edit-btn:hover {
+    background: #bfdbfe;
+}
+
+.academic-records-table .delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.academic-records-table .delete-btn:hover {
+    background: #fecaca;
+}
+
+
+/* No Records */
+
+.no-records {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.no-records-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.no-records h3 {
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.no-records p {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+
+/* Mobile */
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+    .records-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .records-table-card {
+        padding: 12px;
+    }
+
+    .academic-records-table {
+        min-width: 900px;
+    }
+
+    .table-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .academic-records-table .action-buttons {
+        flex-direction: column;
+    }
+}

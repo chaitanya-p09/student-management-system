@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -12,141 +11,243 @@
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 
 <body>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
+        <div class="navbar-container">
 
-        <div class="logo">
-            StudentMS
+            <a href="/dashboard" class="logo">
+                🎓 StudentMS
+            </a>
+
+            <div class="nav-links">
+                <a href="/dashboard">Home</a>
+                <a href="/students">Students</a>
+                <a href="/add-student">Add Student</a>
+                <a href="/attendance">Attendance</a>
+                <a href="/academic">Academic</a>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+
         </div>
-
-        <div class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/students">Students</a>
-            <a href="/attendance">Attendance</a>
-            <a href="/academic">Academic</a>
-            <a href="/login">Logout</a>
-        </div>
-
     </nav>
 
 
-    <section class="dashboard">
+    <!-- Student Details -->
+    <main class="student-details-page">
 
-        <h1>Student Details</h1>
-
-        <div class="student-info">
-
-            <h2>{{ student.name }}</h2>
-
-            <p><strong>Email:</strong> {{ student.email }}</p>
-
-            <p><strong>Course:</strong> {{ student.course }}</p>
-
-            <p><strong>Year:</strong> {{ student.year }}</p>
-
+        <div class="details-header">
+            <h1>👤 Student Details</h1>
+            <p>View student information, academic performance, and attendance.</p>
         </div>
 
 
-        <h2>📚 Academic Records</h2>
+        <!-- Student Information Card -->
+        <section class="student-profile-card">
 
-        <table>
+            <div class="student-profile-icon">
+                👤
+            </div>
 
-            <thead>
+            <div class="student-profile-info">
 
-                <tr>
-                    <th>Subject</th>
-                    <th>Marks</th>
-                    <th>Grade</th>
-                    <th>Result</th>
-                </tr>
+                <h2>{{ student.name }}</h2>
 
-            </thead>
+                <div class="student-info-grid">
 
-            <tbody>
+                    <div class="info-item">
+                        <span class="info-label">📧 Email</span>
+                        <span class="info-value">
+                            {{ student.email }}
+                        </span>
+                    </div>
 
-                {% for record in academic_records %}
+                    <div class="info-item">
+                        <span class="info-label">🎓 Course</span>
+                        <span class="info-value">
+                            {{ student.course }}
+                        </span>
+                    </div>
 
-                <tr>
+                    <div class="info-item">
+                        <span class="info-label">📅 Year</span>
+                        <span class="info-value">
+                            {{ student.year }}
+                        </span>
+                    </div>
 
-                    <td>{{ record.subject }}</td>
+                </div>
 
-                    <td>{{ record.marks }}</td>
+            </div>
 
-                    <td>{{ record.grade }}</td>
-
-                    <td>{{ record.result }}</td>
-
-                </tr>
-
-                {% else %}
-
-                <tr>
-                    <td colspan="4">
-                        No academic records found.
-                    </td>
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
+        </section>
 
 
-        <br>
+        <!-- Academic Records -->
+        <section class="details-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>📚 Academic Records</h2>
+                    <p>Student examination and subject performance.</p>
+                </div>
+            </div>
 
 
-        <h2>📅 Attendance Records</h2>
+            <div class="details-table-wrapper">
 
-        <table>
+                <table class="details-table">
 
-            <thead>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Grade</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
 
-                <tr>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
+                    <tbody>
 
-            </thead>
+                        {% for record in academic_records %}
 
-            <tbody>
+                        <tr>
 
-                {% for record in attendance_records %}
+                            <td>
+                                <strong>{{ record.subject }}</strong>
+                            </td>
 
-                <tr>
+                            <td>
+                                {{ record.marks }}
+                            </td>
 
-                    <td>{{ record.date }}</td>
+                            <td>
+                                <span class="grade-badge">
+                                    {{ record.grade }}
+                                </span>
+                            </td>
 
-                    <td>{{ record.status }}</td>
+                            <td>
 
-                </tr>
+                                {% if record.result == "Pass" %}
+                                    <span class="result-pass">
+                                        {{ record.result }}
+                                    </span>
+                                {% else %}
+                                    <span class="result-fail">
+                                        {{ record.result }}
+                                    </span>
+                                {% endif %}
 
-                {% else %}
+                            </td>
 
-                <tr>
-                    <td colspan="2">
-                        No attendance records found.
-                    </td>
-                </tr>
+                        </tr>
 
-                {% endfor %}
+                        {% else %}
 
-            </tbody>
+                        <tr>
+                            <td colspan="4" class="empty-records">
+                                📭 No academic records found.
+                            </td>
+                        </tr>
 
-        </table>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
 
 
-        <br>
+        <!-- Attendance Records -->
+        <section class="details-section">
 
-        <a href="/students">
-            ← Back to Students
-        </a>
+            <div class="section-heading">
+                <div>
+                    <h2>📅 Attendance Records</h2>
+                    <p>Student attendance history.</p>
+                </div>
+            </div>
 
-    </section>
+
+            <div class="details-table-wrapper">
+
+                <table class="details-table">
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for record in attendance_records %}
+
+                        <tr>
+
+                            <td>
+                                {{ record.date }}
+                            </td>
+
+                            <td>
+
+                                {% if record.status == "Present" %}
+                                    <span class="attendance-present">
+                                        ✓ Present
+                                    </span>
+                                {% else %}
+                                    <span class="attendance-absent">
+                                        ✕ Absent
+                                    </span>
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="2" class="empty-records">
+                                📭 No attendance records found.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Back Button -->
+        <div class="details-back-section">
+
+            <a href="/students" class="back-btn">
+                ← Back to Students
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Student Management System</p>
+    </footer>
 
 </body>
 
