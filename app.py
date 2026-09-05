@@ -18,7 +18,6 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if "user_id" not in session:
             return redirect(url_for("login"))
-
         return f(*args, **kwargs)
 
     return decorated_function
@@ -100,9 +99,12 @@ def register():
 
     if request.method == "POST":
 
-        username = request.form["username"]
-        email = request.form["email"]
-        password = request.form["password"]
+        username = request.form.get("username", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "")
+
+        if not username or not email or not password:
+            return "All fields are required."
 
         # Hash password before storing it
         password_hash = generate_password_hash(password)
@@ -138,8 +140,8 @@ def login():
 
     if request.method == "POST":
 
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
 
         conn = get_db_connection()
 
@@ -208,7 +210,9 @@ def dashboard():
 @app.route("/add-student", methods=["GET", "POST"])
 @login_required
 def add_student():
+
     if request.method == "POST":
+
         name = request.form.get("name", "").strip()
         email = request.form.get("email", "").strip()
         course = request.form.get("course", "").strip()
@@ -259,6 +263,7 @@ def add_student():
 
     return render_template("add_student.html")
 
+
 # ---------------- VIEW STUDENTS ----------------
 
 @app.route("/students")
@@ -277,7 +282,7 @@ def students():
             WHERE name LIKE ?
                OR email LIKE ?
                OR course LIKE ?
-            ORDER BY id DESC
+            ORDER BY id ASC
             """,
             (
                 "%" + search + "%",
@@ -289,7 +294,10 @@ def students():
     else:
 
         students = conn.execute(
-            "SELECT * FROM students ORDER BY id DESC"
+            """
+            SELECT * FROM students
+            ORDER BY id ASC
+            """
         ).fetchall()
 
     conn.close()
@@ -320,10 +328,42 @@ def edit_student(id):
 
     if request.method == "POST":
 
-        name = request.form["name"]
-        email = request.form["email"]
-        course = request.form["course"]
-        year = request.form["year"]
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        course = request.form.get("course", "").strip()
+        year = request.form.get("year", "").strip()
+
+        if not name or not email or not course or not year:
+            conn.close()
+            return "All fields are required."
+
+        if "@" not in email or "." not in email.split("@")[-1]:
+            conn.close()
+            return "Please enter a valid email address."
+
+        if not year.isdigit():
+            conn.close()
+            return "Year must be a number."
+
+        year = int(year)
+
+        if year < 1 or year > 4:
+            conn.close()
+            return "Year must be between 1 and 4."
+
+        # Check duplicate email for another student
+        existing_student = conn.execute(
+            """
+            SELECT id
+            FROM students
+            WHERE email = ? AND id != ?
+            """,
+            (email, id)
+        ).fetchone()
+
+        if existing_student:
+            conn.close()
+            return "A student with this email already exists."
 
         conn.execute(
             """
@@ -388,7 +428,6 @@ def delete_student(id):
 
     return redirect(url_for("students"))
 
-# ---------------- ATTENDANCE ----------------
 
 # ---------------- ATTENDANCE ----------------
 
@@ -398,9 +437,9 @@ def attendance():
 
     conn = get_db_connection()
 
-    # Get all students
+    # Get all students in ascending order
     students = conn.execute(
-        "SELECT * FROM students"
+        "SELECT * FROM students ORDER BY id ASC"
     ).fetchall()
 
     if request.method == "POST":
@@ -456,6 +495,8 @@ def attendance():
         "attendance.html",
         students=students
     )
+
+
 # ---------------- ATTENDANCE RECORDS ----------------
 
 @app.route("/attendance-records")
@@ -485,6 +526,7 @@ def attendance_records():
 
     # Search by student name or course
     if search:
+
         query += """
             AND (
                 students.name LIKE ?
@@ -499,10 +541,16 @@ def attendance_records():
 
     # Filter by attendance status
     if status:
+
         query += " AND attendance.status = ?"
+
         params.append(status)
 
-    query += " ORDER BY attendance.date DESC"
+    # Sort by Student ID first, then date
+    query += """
+        ORDER BY attendance.student_id ASC,
+                 attendance.date ASC
+    """
 
     records = conn.execute(
         query,
@@ -518,7 +566,8 @@ def attendance_records():
         status=status
     )
 
-# ---------------- ACADEMIC RECORDS ----------------
+
+# ---------------- ADD ACADEMIC RECORD ----------------
 
 @app.route("/academic", methods=["GET", "POST"])
 @login_required
@@ -526,9 +575,9 @@ def academic():
 
     conn = get_db_connection()
 
-    # Get all students
+    # Get all students in ascending order
     students = conn.execute(
-        "SELECT * FROM students"
+        "SELECT * FROM students ORDER BY id ASC"
     ).fetchall()
 
     if request.method == "POST":
@@ -542,9 +591,27 @@ def academic():
             conn.close()
             return "All academic fields are required."
 
+        # Validate student ID
+        if not student_id.isdigit():
+            conn.close()
+            return "Invalid student ID."
+
+        student_id = int(student_id)
+
+        # Check whether student exists
+        student = conn.execute(
+            "SELECT id FROM students WHERE id = ?",
+            (student_id,)
+        ).fetchone()
+
+        if student is None:
+            conn.close()
+            return "Student not found."
+
         # Validate marks
         try:
             marks = float(marks_input)
+
         except ValueError:
             conn.close()
             return "Marks must be a number."
@@ -561,20 +628,26 @@ def academic():
         # Calculate grade
         if marks >= 90:
             grade = "A+"
+
         elif marks >= 80:
             grade = "A"
+
         elif marks >= 70:
             grade = "B"
+
         elif marks >= 60:
             grade = "C"
+
         elif marks >= 50:
             grade = "D"
+
         else:
             grade = "F"
 
         # Calculate result
         if marks >= 40:
             result = "Pass"
+
         else:
             result = "Fail"
 
@@ -622,7 +695,9 @@ def academic_records():
         FROM academic_records
         JOIN students
         ON academic_records.student_id = students.id
-        ORDER BY academic_records.id DESC
+
+        ORDER BY academic_records.student_id ASC,
+                 academic_records.id ASC
         """
     ).fetchall()
 
@@ -632,6 +707,8 @@ def academic_records():
         "academic_records.html",
         records=records
     )
+
+
 # ---------------- EDIT ACADEMIC RECORD ----------------
 
 @app.route("/edit-academic/<int:id>", methods=["GET", "POST"])
@@ -662,6 +739,7 @@ def edit_academic(id):
         # Validate marks
         try:
             marks = float(marks_input)
+
         except ValueError:
             conn.close()
             return "Marks must be a number."
@@ -678,23 +756,30 @@ def edit_academic(id):
         # Calculate grade
         if marks >= 90:
             grade = "A+"
+
         elif marks >= 80:
             grade = "A"
+
         elif marks >= 70:
             grade = "B"
+
         elif marks >= 60:
             grade = "C"
+
         elif marks >= 50:
             grade = "D"
+
         else:
             grade = "F"
 
         # Calculate result
         if marks >= 40:
             result = "Pass"
+
         else:
             result = "Fail"
 
+        # CORRECT SQL
         conn.execute(
             """
             UPDATE academic_records
@@ -715,6 +800,7 @@ def edit_academic(id):
         "edit_academic.html",
         record=record
     )
+
 
 # ---------------- DELETE ACADEMIC RECORD ----------------
 
@@ -750,9 +836,7 @@ def student_details(id):
     ).fetchone()
 
     if student is None:
-
         conn.close()
-
         return "Student not found."
 
     # Get academic records
@@ -761,7 +845,7 @@ def student_details(id):
         SELECT *
         FROM academic_records
         WHERE student_id = ?
-        ORDER BY id DESC
+        ORDER BY id ASC
         """,
         (id,)
     ).fetchall()
@@ -772,7 +856,7 @@ def student_details(id):
         SELECT *
         FROM attendance
         WHERE student_id = ?
-        ORDER BY date DESC
+        ORDER BY date ASC
         """,
         (id,)
     ).fetchall()
